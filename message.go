@@ -216,6 +216,11 @@ func getReflectionResultMessage(val *reflect.Value) *ResultMessage {
 }
 
 func releaseResultMessage(v *ResultMessage) {
+	if v == nil {
+		log.Println("releasing nil ResultMessage")
+		return
+	}
+
 	v.reset()
 	resultMessagePool.Put(v)
 }
